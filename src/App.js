@@ -80,26 +80,29 @@ function App() {
 
 
   return (
+    <div className='pokedex-body'>
     <FavoriteProvider  
     value = {{
       favoritePokemons: favorites, 
       updateFavoritePokemons: updateFavoritePokemons}}>
-    <div>
+      <div className='navbar-geral'>
       <Navbar/>
       <Searchbar onSearch={onSearchHandler} />
+      </div>
+    <div>
       {notFound ? (
         <div className='not-found-text'>Escreve isso direito!</div>
-      ) :
-      (<Pokedex 
-      pokemons={pokemons} 
-      loading={loading} 
-      page={page} 
-      setPage={setPage}
-      totalPages={totalPages}
-      />)}
+        ) :
+        (<Pokedex 
+          pokemons={pokemons} 
+          loading={loading} 
+          page={page} 
+          setPage={setPage}
+          totalPages={totalPages}
+          />)}
       </div>
       </FavoriteProvider>
+      </div>
       );
     }
-
 export default App;

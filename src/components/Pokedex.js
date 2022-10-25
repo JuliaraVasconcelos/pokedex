@@ -1,6 +1,8 @@
 import React from "react";
 import Pagination from "./Pagination";
 import Pokemon from "./Pokemon";
+import Stack from '@mui/material/Stack';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const Pokedex = (props) => {
     const { pokemons, loading, page, setPage, totalPages } = props;
@@ -17,13 +19,14 @@ const Pokedex = (props) => {
     return (
         <div>
             <div className="pokedex-header">
-                <h1>Pokedex</h1>
                 <Pagination page={page+1}
                 totalPages={totalPages}
                 onLeftClick={onLeftClickHandler}
                 onRightClick={onRightClickHandler}/>
             </div>
-            {loading ? (<div>Caregando</div>) :
+            {loading ? (<div><Stack sx={{ color: 'grey.500' }} spacing={2} direction="row">
+                <CircularProgress color="secondary" />
+            </Stack></div>) :
                 (<div className="pokedex-grid">
                     {pokemons && pokemons.map((pokemon, index) => {
                         return (<Pokemon key={index} pokemon={pokemon}/>)
